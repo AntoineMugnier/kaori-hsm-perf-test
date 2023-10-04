@@ -18,12 +18,14 @@
 
 #![no_main]
 #![no_std]
-
+mod basic_hsm;
+use kaori_hsm::StateMachine;
+use basic_hsm::BasicStateMachine;
 use cortex_m_rt::{entry, exception};
-
+use defmt::println;
 use stm32f1::stm32f103;
 use cortex_m::peripheral::syst;
-
+use basic_hsm::BasicEvt;
 use defmt_rtt as _; // global logger
 use panic_probe as _;
 
@@ -32,6 +34,7 @@ const SYSCLK_FREQ_HZ : u32 = 8_000_000;
 // Aliases for the library generic types 
 type Microclock = cortex_m_microclock::CYCCNTClock<SYSCLK_FREQ_HZ>;
 type Duration = cortex_m_microclock::Duration::<SYSCLK_FREQ_HZ>;
+
 
 #[entry]
 fn main() -> ! {
@@ -68,10 +71,24 @@ fn main() -> ! {
 
     let duration = Duration::secs(1);
     loop {
-        let init_inst = Microclock::now();
-        Microclock::delay(duration);
-        let elapsed_time = Microclock::now() - init_inst;
-        defmt::info!("time_us {}", elapsed_time.to_micros());
+        let basic_state_machine = BasicStateMachine::new();
+
+        let mut sm = StateMachine::from(basic_state_machine);
+
+        println!("Init state machine");
+        sm.init();
+
+        let evt_list = [BasicEvt::A, BasicEvt::B];
+
+        for evt in evt_list {
+            println!("\r\nDispatching evt {:?}", evt);
+            let init_inst = Microclock::now();
+            sm.dispatch(&evt);
+            let elapsed_time = Microclock::now() - init_inst;
+            defmt::println!("time_us {}", elapsed_time.to_micros());
+        }
+        loop { 
+        }
     }
 }
 
