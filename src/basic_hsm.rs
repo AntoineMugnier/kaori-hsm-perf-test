@@ -1,5 +1,5 @@
 use kaori_hsm::*;
-use defmt::{println, Format};
+use defmt::{Format, debug};
 
 // Evt definition
 #[derive(Format)]
@@ -25,7 +25,7 @@ impl ProtoStateMachine for BasicStateMachine {
     type Evt = BasicEvt;
 
     fn init(&mut self) -> InitResult<Self> {
-        println!("TOP_INIT");
+        debug!("TOP_INIT");
         init_transition!(S11)
     }
 }
@@ -33,30 +33,30 @@ impl ProtoStateMachine for BasicStateMachine {
 #[state(super_state= Top)]
 impl State<S1> for BasicStateMachine {
     fn init(&mut self) -> InitResult<Self> {
-        println!("S1-INIT");
+        debug!("S1-INIT");
         init_transition!(S11)
     }
 
     fn exit(&mut self) {
-        println!("S1-EXIT");
+        debug!("S1-EXIT");
     }
 
     fn entry(&mut self) {
-        println!("S1-ENTRY");
+        debug!("S1-ENTRY");
     }
 
     fn handle(&mut self, evt: &BasicEvt) -> HandleResult<Self> {
         match evt {
             BasicEvt::A => {
-                println!("S1-HANDLES-A");
+                debug!("S1-HANDLES-A");
                 handled!()
             }
             BasicEvt::C => {
-                println!("S1-HANDLES-C");
+                debug!("S1-HANDLES-C");
                 transition!(S122)
             }
             BasicEvt::D => {
-                println!("S1-HANDLES-D");
+                debug!("S1-HANDLES-D");
                 transition!(S1)
             }
             _ => ignored!(),
@@ -67,21 +67,21 @@ impl State<S1> for BasicStateMachine {
 #[state(super_state= S1)]
 impl State<S11> for BasicStateMachine {
     fn exit(&mut self) {
-        println!("S11-EXIT");
+        debug!("S11-EXIT");
     }
 
     fn entry(&mut self) {
-        println!("S11-ENTRY");
+        debug!("S11-ENTRY");
     }
 
     fn handle(&mut self, evt: &BasicEvt) -> HandleResult<Self> {
         match evt {
             BasicEvt::A => {
-                println!("S11-HANDLES-A");
+                debug!("S11-HANDLES-A");
                 transition!(S121)
             }
             BasicEvt::B => {
-                println!("S11-HANDLES-B");
+                debug!("S11-HANDLES-B");
 
                 self.a += 1;
 
@@ -100,26 +100,26 @@ impl State<S11> for BasicStateMachine {
 #[state(super_state= S1)]
 impl State<S12> for BasicStateMachine {
     fn init(&mut self) -> InitResult<Self> {
-        println!("S12-INIT");
+        debug!("S12-INIT");
         init_transition!(S121)
     }
 
     fn exit(&mut self) {
-        println!("S12-EXIT");
+        debug!("S12-EXIT");
     }
 
     fn entry(&mut self) {
-        println!("S12-ENTRY");
+        debug!("S12-ENTRY");
     }
 
     fn handle(&mut self, evt: &BasicEvt) -> HandleResult<Self> {
         match evt {
             BasicEvt::B => {
-                println!("S12-HANDLES-B");
+                debug!("S12-HANDLES-B");
                 handled!()
             }
             BasicEvt::D => {
-                println!("S12-HANDLES-D");
+                debug!("S12-HANDLES-D");
                 transition!(S121)
             }
             _ => ignored!(),
@@ -130,25 +130,25 @@ impl State<S12> for BasicStateMachine {
 #[state(super_state= S12)]
 impl State<S121> for BasicStateMachine {
     fn exit(&mut self) {
-        println!("S121-EXIT");
+        debug!("S121-EXIT");
     }
 
     fn entry(&mut self) {
-        println!("S121-ENTRY");
+        debug!("S121-ENTRY");
     }
 
     fn handle(&mut self, evt: &BasicEvt) -> HandleResult<Self> {
         match evt {
             BasicEvt::A => {
-                println!("S121-HANDLES-A");
+                debug!("S121-HANDLES-A");
                 transition!(S122)
             }
             BasicEvt::B => {
-                println!("S121-HANDLES-B");
+                debug!("S121-HANDLES-B");
                 transition!(S12)
             }
             BasicEvt::C => {
-                println!("S121-HANDLES-C");
+                debug!("S121-HANDLES-C");
                 transition!(S11)
             }
             _ => ignored!(),
@@ -159,25 +159,25 @@ impl State<S121> for BasicStateMachine {
 #[state(super_state= S12)]
 impl State<S122> for BasicStateMachine {
     fn exit(&mut self) {
-        println!("S122-EXIT");
+        debug!("S122-EXIT");
     }
 
     fn entry(&mut self) {
-        println!("S122-ENTRY");
+        debug!("S122-ENTRY");
     }
 
     fn handle(&mut self, evt: &BasicEvt) -> HandleResult<Self> {
         match evt {
             BasicEvt::B => {
-                println!("S122-HANDLES-B");
+                debug!("S122-HANDLES-B");
                 handled!()
             }
             BasicEvt::C => {
-                println!("S122-HANDLES-C");
+                debug!("S122-HANDLES-C");
                 transition!(S122)
             }
             BasicEvt::D => {
-                println!("S122-HANDLES-D");
+                debug!("S122-HANDLES-D");
                 transition!(S1)
             }
             _ => ignored!(),

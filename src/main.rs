@@ -69,7 +69,6 @@ fn main() -> ! {
     // Delayed enabling of systick IRQs as `Microclock::update()` should not be triggered before call to `Microclock::init()`
     systick.enable_interrupt();
 
-    let duration = Duration::secs(1);
     loop {
         let basic_state_machine = BasicStateMachine::new();
 
@@ -84,7 +83,8 @@ fn main() -> ! {
             println!("\r\nDispatching evt {:?}", evt);
             let init_inst = Microclock::now();
             sm.dispatch(&evt);
-            let elapsed_time = Microclock::now() - init_inst;
+            let end_inst = Microclock::now();
+            let elapsed_time = end_inst - init_inst;
             defmt::println!("time_us {}", elapsed_time.to_micros());
         }
         loop { 
