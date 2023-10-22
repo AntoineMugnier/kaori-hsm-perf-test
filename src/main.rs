@@ -35,6 +35,7 @@ const SYSCLK_FREQ_HZ : u32 = 8_000_000;
 type Microclock = cortex_m_microclock::CYCCNTClock<SYSCLK_FREQ_HZ>;
 type Duration = cortex_m_microclock::Duration::<SYSCLK_FREQ_HZ>;
 
+include!(concat!(env!("OUT_DIR"), "/tst.rs"));
 
 #[entry]
 fn main() -> ! {
@@ -87,8 +88,13 @@ fn main() -> ! {
             let elapsed_time = end_inst - init_inst;
             defmt::println!("time_us {}", elapsed_time.to_micros());
         }
-        loop { 
+        unsafe{
+
+            defmt::println!("toto value is {}", toto());
         }
+        loop {
+        }
+    
     }
 }
 
