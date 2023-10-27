@@ -33,9 +33,8 @@ const SYSCLK_FREQ_HZ : u32 = 8_000_000;
 
 // Aliases for the library generic types 
 type Microclock = cortex_m_microclock::CYCCNTClock<SYSCLK_FREQ_HZ>;
-type Duration = cortex_m_microclock::Duration::<SYSCLK_FREQ_HZ>;
 
-include!(concat!(env!("OUT_DIR"), "/tst.rs"));
+include!(concat!(env!("OUT_DIR"), "/basic_hsm_qpcpp.rs"));
 
 #[entry]
 fn main() -> ! {

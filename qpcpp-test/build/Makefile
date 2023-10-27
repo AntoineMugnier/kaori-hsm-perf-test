@@ -129,29 +129,29 @@ qpcpp-tst/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/qpcpp-tst.dir/build.make CMakeFiles/qpcpp-tst.dir/build
 .PHONY : qpcpp-tst/fast
 
-tst.obj: tst.c.obj
-.PHONY : tst.obj
+basic_hsm_qpcpp.obj: basic_hsm_qpcpp.cpp.obj
+.PHONY : basic_hsm_qpcpp.obj
 
 # target to build an object file
-tst.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/qpcpp-tst.dir/build.make CMakeFiles/qpcpp-tst.dir/tst.c.obj
-.PHONY : tst.c.obj
+basic_hsm_qpcpp.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/qpcpp-tst.dir/build.make CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.obj
+.PHONY : basic_hsm_qpcpp.cpp.obj
 
-tst.i: tst.c.i
-.PHONY : tst.i
+basic_hsm_qpcpp.i: basic_hsm_qpcpp.cpp.i
+.PHONY : basic_hsm_qpcpp.i
 
 # target to preprocess a source file
-tst.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/qpcpp-tst.dir/build.make CMakeFiles/qpcpp-tst.dir/tst.c.i
-.PHONY : tst.c.i
+basic_hsm_qpcpp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/qpcpp-tst.dir/build.make CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.i
+.PHONY : basic_hsm_qpcpp.cpp.i
 
-tst.s: tst.c.s
-.PHONY : tst.s
+basic_hsm_qpcpp.s: basic_hsm_qpcpp.cpp.s
+.PHONY : basic_hsm_qpcpp.s
 
 # target to generate assembly for a file
-tst.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/qpcpp-tst.dir/build.make CMakeFiles/qpcpp-tst.dir/tst.c.s
-.PHONY : tst.c.s
+basic_hsm_qpcpp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/qpcpp-tst.dir/build.make CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.s
+.PHONY : basic_hsm_qpcpp.cpp.s
 
 # Help Target
 help:
@@ -162,9 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... qpcpp-tst"
-	@echo "... tst.obj"
-	@echo "... tst.i"
-	@echo "... tst.s"
+	@echo "... basic_hsm_qpcpp.obj"
+	@echo "... basic_hsm_qpcpp.i"
+	@echo "... basic_hsm_qpcpp.s"
 .PHONY : help
 
 

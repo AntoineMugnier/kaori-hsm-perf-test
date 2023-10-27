@@ -69,31 +69,31 @@ include CMakeFiles/qpcpp-tst.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/qpcpp-tst.dir/flags.make
 
-CMakeFiles/qpcpp-tst.dir/tst.c.obj: CMakeFiles/qpcpp-tst.dir/flags.make
-CMakeFiles/qpcpp-tst.dir/tst.c.obj: ../tst.c
-CMakeFiles/qpcpp-tst.dir/tst.c.obj: CMakeFiles/qpcpp-tst.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/antoine/Documents/projects/kaori-hsm-perf-test/qpcpp-test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/qpcpp-tst.dir/tst.c.obj"
-	/opt/arm-gnu-toolchain-12.3.rel1-x86_64-arm-none-eabi/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/qpcpp-tst.dir/tst.c.obj -MF CMakeFiles/qpcpp-tst.dir/tst.c.obj.d -o CMakeFiles/qpcpp-tst.dir/tst.c.obj -c /home/antoine/Documents/projects/kaori-hsm-perf-test/qpcpp-test/tst.c
+CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.obj: CMakeFiles/qpcpp-tst.dir/flags.make
+CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.obj: ../basic_hsm_qpcpp.cpp
+CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.obj: CMakeFiles/qpcpp-tst.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/antoine/Documents/projects/kaori-hsm-perf-test/qpcpp-test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.obj"
+	/opt/arm-gnu-toolchain-12.3.rel1-x86_64-arm-none-eabi/bin/arm-none-eabi-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.obj -MF CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.obj.d -o CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.obj -c /home/antoine/Documents/projects/kaori-hsm-perf-test/qpcpp-test/basic_hsm_qpcpp.cpp
 
-CMakeFiles/qpcpp-tst.dir/tst.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/qpcpp-tst.dir/tst.c.i"
-	/opt/arm-gnu-toolchain-12.3.rel1-x86_64-arm-none-eabi/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/antoine/Documents/projects/kaori-hsm-perf-test/qpcpp-test/tst.c > CMakeFiles/qpcpp-tst.dir/tst.c.i
+CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.i"
+	/opt/arm-gnu-toolchain-12.3.rel1-x86_64-arm-none-eabi/bin/arm-none-eabi-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/antoine/Documents/projects/kaori-hsm-perf-test/qpcpp-test/basic_hsm_qpcpp.cpp > CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.i
 
-CMakeFiles/qpcpp-tst.dir/tst.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/qpcpp-tst.dir/tst.c.s"
-	/opt/arm-gnu-toolchain-12.3.rel1-x86_64-arm-none-eabi/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/antoine/Documents/projects/kaori-hsm-perf-test/qpcpp-test/tst.c -o CMakeFiles/qpcpp-tst.dir/tst.c.s
+CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.s"
+	/opt/arm-gnu-toolchain-12.3.rel1-x86_64-arm-none-eabi/bin/arm-none-eabi-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/antoine/Documents/projects/kaori-hsm-perf-test/qpcpp-test/basic_hsm_qpcpp.cpp -o CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.s
 
 # Object files for target qpcpp-tst
 qpcpp__tst_OBJECTS = \
-"CMakeFiles/qpcpp-tst.dir/tst.c.obj"
+"CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.obj"
 
 # External object files for target qpcpp-tst
 qpcpp__tst_EXTERNAL_OBJECTS =
 
-libqpcpp-tst.a: CMakeFiles/qpcpp-tst.dir/tst.c.obj
+libqpcpp-tst.a: CMakeFiles/qpcpp-tst.dir/basic_hsm_qpcpp.cpp.obj
 libqpcpp-tst.a: CMakeFiles/qpcpp-tst.dir/build.make
 libqpcpp-tst.a: CMakeFiles/qpcpp-tst.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/antoine/Documents/projects/kaori-hsm-perf-test/qpcpp-test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library libqpcpp-tst.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/antoine/Documents/projects/kaori-hsm-perf-test/qpcpp-test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libqpcpp-tst.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/qpcpp-tst.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/qpcpp-tst.dir/link.txt --verbose=$(VERBOSE)
 

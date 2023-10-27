@@ -12,7 +12,7 @@
 
 use std::env;
 use std::fs::File;
-use std::io::{self,Write};
+use std::io::{Write};
 use std::path::PathBuf;
 use std::process::Command;
 
@@ -57,13 +57,13 @@ fn main() {
     println!("cargo:rustc-link-lib=static=qpcpp-tst");
 
     // This build.rs script is rerun if any source or header of the lib changes
-    println!("cargo:rerun-if-changed=qpcpp-test/tst.h");
-    println!("cargo:rerun-if-changed=qpcpp-test/tst.ck");
+    println!("cargo:rerun-if-changed=qpcpp-test/wrapper.hpp");
+    println!("cargo:rerun-if-changed=qpcpp-test/basic_hsm_qpcpp.cpp");
 
    let bindings = bindgen::Builder::default()
         // The input header we would like to generate
         // bindings for.
-        .header("qpcpp-test/tst.h")
+        .header("qpcpp-test/wrapper.hpp")
         // Tell cargo to invalidate the built crate whenever any of the
         // included header files changed.
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))
@@ -71,11 +71,11 @@ fn main() {
         // Finish the builder and generate the bindings.
         .generate()
         // Unwrap the Result and panic on failure.
-        .expect("Unable to generate tst");
+        .expect("Unable to generate basic_hsm_qpcpp");
 
     // Write the bindings to the $OUT_DIR/bindings.rs file.
     bindings
-        .write_to_file(out.join("tst.rs"))
-        .expect("Couldn't write tst.rs!");   
+        .write_to_file(out.join("basic_hsm_qpcpp.rs"))
+        .expect("Couldn't write basic_hsm_qpcpp.rs!");   
   
 }
