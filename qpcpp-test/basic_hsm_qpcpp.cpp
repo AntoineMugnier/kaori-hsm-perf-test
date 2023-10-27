@@ -1,3 +1,5 @@
-unsigned char toto(){
-  return 65; 
+#include <string_view>
+const char* toto(){
+  static char str[] = "Hello World";
+  return str;
 }

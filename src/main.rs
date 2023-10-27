@@ -28,7 +28,7 @@ use cortex_m::peripheral::syst;
 use basic_hsm::BasicEvt;
 use defmt_rtt as _; // global logger
 use panic_probe as _;
-
+use core::ffi::CStr;
 const SYSCLK_FREQ_HZ : u32 = 8_000_000;
 
 // Aliases for the library generic types 
@@ -88,8 +88,8 @@ fn main() -> ! {
             defmt::println!("time_us {}", elapsed_time.to_micros());
         }
         unsafe{
-
-            defmt::println!("toto value is {}", toto());
+            let s =  CStr::from_ptr(toto() as *const i8);
+            defmt::println!("toto value is {}", s.to_str().unwrap());
         }
         loop {
         }
