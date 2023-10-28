@@ -57,8 +57,7 @@ fn main() {
     println!("cargo:rustc-link-lib=static=qpcpp-tst");
 
     // This build.rs script is rerun if any source or header of the lib changes
-    println!("cargo:rerun-if-changed=qpcpp-test/wrapper.hpp");
-    println!("cargo:rerun-if-changed=qpcpp-test/basic_hsm_qpcpp.cpp");
+    println!("cargo:rerun-if-changed=qpcpp-test");
 
    let bindings = bindgen::Builder::default()
         // The input header we would like to generate
