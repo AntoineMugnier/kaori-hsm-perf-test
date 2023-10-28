@@ -4,10 +4,10 @@ set(CMAKE_SYSTEM_PROCESSOR          arm)
 # Some default GCC settings
 # arm-none-eabi- must be part of path environment
 set(TOOL_CHAIN_PREFIX                arm-none-eabi)
-set(COMPILER_OPTIONS "-mthumb -mcpu=cortex-m3 -mlittle-endian -mthumb-interwork ")
+set(COMPILER_OPTIONS "-mthumb -mcpu=cortex-m3 -mlittle-endian -mthumb-interwork -Os ")
 
-SET(CMAKE_C_FLAGS "${COMPILER_OPTIONS} -lm -lc -lnosys --specs=nosys.specs " CACHE INTERNAL "c compiler flags")
-SET(CMAKE_CXX_FLAGS "${COMPILER_OPTIONS} -lm -lc -lnosys --specs=nosys.specs " CACHE INTERNAL "cxx compiler flags")
+SET(CMAKE_C_FLAGS "${COMPILER_OPTIONS} -lm -lc -lnosys --specs=nosys.specs -ffunction-sections -fdata-sections" CACHE INTERNAL "c compiler flags")
+SET(CMAKE_CXX_FLAGS "${COMPILER_OPTIONS} -lm -lc -lnosys --specs=nosys.specs -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions " CACHE INTERNAL "cxx compiler flags")
 SET(CMAKE_ASM_FLAGS "${COMPILER_OPTIONS}" CACHE INTERNAL "asm compiler flags")
 
 SET(CMAKE_EXE_LINKER_FLAGS "${COMPILER_OPTIONS} -Wl,-Map=linker.map -Wl,-cref -Wl,--gc-sections" CACHE INTERNAL "exe link flags")# Define compiler settings
