@@ -70,11 +70,11 @@ fn main() {
         // Finish the builder and generate the bindings.
         .generate()
         // Unwrap the Result and panic on failure.
-        .expect("Unable to generate basic_hsm_qpcpp");
+        .expect("Unable to generate wrapper.rs");
 
-    // Write the bindings to the $OUT_DIR/bindings.rs file.
+    // Write the bindings to the $OUT_DIR/wrapper.rs file.
     bindings
-        .write_to_file(out.join("basic_hsm_qpcpp.rs"))
-        .expect("Couldn't write basic_hsm_qpcpp.rs!");   
+        .write_to_file(out.join("wrapper.rs"))
+        .expect("Couldn't write wrapper.rs!");   
   
 }

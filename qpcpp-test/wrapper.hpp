@@ -1,1 +1,1 @@
-unsigned char toto();
+#include "interface.hpp"

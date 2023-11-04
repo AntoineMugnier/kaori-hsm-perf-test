@@ -7,15 +7,19 @@ enum AppSignals : QP::QSignal {
     MAX_SIG       // the last signal
 };
 
-class Blinky : public QP::QHsm {
+class BasicStateMachine : public QP::QHsm {
 
 public:
-    Blinky();
+    BasicStateMachine();
 
 protected:
     Q_STATE_DECL(initial);
-    Q_STATE_DECL(off);
-    Q_STATE_DECL(on);
+    Q_STATE_DECL(S1);
+    Q_STATE_DECL(S2);
+    Q_STATE_DECL(S11);
+    Q_STATE_DECL(S12);
+    Q_STATE_DECL(S121);
+    Q_STATE_DECL(S122);
 };
 
 

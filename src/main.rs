@@ -34,7 +34,7 @@ const SYSCLK_FREQ_HZ : u32 = 8_000_000;
 // Aliases for the library generic types 
 type Microclock = cortex_m_microclock::CYCCNTClock<SYSCLK_FREQ_HZ>;
 
-include!(concat!(env!("OUT_DIR"), "/basic_hsm_qpcpp.rs"));
+include!(concat!(env!("OUT_DIR"), "/wrapper.rs"));
 
 #[entry]
 fn main() -> ! {
@@ -88,7 +88,7 @@ fn main() -> ! {
             defmt::println!("time_us {}", elapsed_time.to_micros());
         }
         unsafe{
-            let s =  CStr::from_ptr(toto() as *const i8);
+            let s =  CStr::from_ptr(dispatch_evt(INTERFACE_SIGNAL_A) as *const i8);
             defmt::println!("toto value is {}", s.to_str().unwrap());
         }
         loop {

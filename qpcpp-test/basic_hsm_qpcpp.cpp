@@ -1,7 +1,8 @@
 #include "basic_hsm_qpcpp.hpp"
+#include <array>
 
 // local objects --------------------------------------------------------------
-Blinky inst;
+BasicStateMachine inst;
 extern "C" {
 
 Q_NORETURN Q_onError(char const * const module, int_t const id) {
@@ -14,29 +15,102 @@ Q_NORETURN Q_onError(char const * const module, int_t const id) {
 }
 }
 //............................................................................
-Blinky::Blinky()
+BasicStateMachine::BasicStateMachine()
   : QP::QHsm(&initial)
 {
     // empty
 }
 
+
 // HSM definition ------------------------------------------------------------
-Q_STATE_DEF(Blinky, initial) {
+Q_STATE_DEF(BasicStateMachine, initial) {
     (void)e; // unused parameter
 
     // arm the time event to expire in half a second and every half second
-    return tran(&off);
+    return tran(&S1);
 }
 //............................................................................
-Q_STATE_DEF(Blinky, off) {
+Q_STATE_DEF(BasicStateMachine, S1) {
     QP::QState status;
     switch (e->sig) {
         case Q_ENTRY_SIG: {
             status = Q_RET_HANDLED;
             break;
         }
-        case TIMEOUT_SIG: {
-            status = tran(&on);
+        case Q_EXIT_SIG:{
+            status = Q_RET_HANDLED;
+            break;
+        }
+        default: {
+            status = super(&top);
+            break;
+        }
+    }
+    return status;
+}
+Q_STATE_DEF(BasicStateMachine, S11) {
+    QP::QState status;
+    switch (e->sig) {
+        case Q_ENTRY_SIG: {
+            status = Q_RET_HANDLED;
+            break;
+        }
+        case Q_EXIT_SIG:{
+            status = Q_RET_HANDLED;
+            break;
+        }
+        default: {
+            status = super(&top);
+            break;
+        }
+    }
+    return status;
+}
+Q_STATE_DEF(BasicStateMachine, S12) {
+    QP::QState status;
+    switch (e->sig) {
+        case Q_ENTRY_SIG: {
+            status = Q_RET_HANDLED;
+            break;
+        }
+        case Q_EXIT_SIG:{
+            status = Q_RET_HANDLED;
+            break;
+        }
+        default: {
+            status = super(&top);
+            break;
+        }
+    }
+    return status;
+}
+Q_STATE_DEF(BasicStateMachine, S121) {
+    QP::QState status;
+    switch (e->sig) {
+        case Q_ENTRY_SIG: {
+            status = Q_RET_HANDLED;
+            break;
+        }
+        case Q_EXIT_SIG:{
+            status = Q_RET_HANDLED;
+            break;
+        }
+        default: {
+            status = super(&top);
+            break;
+        }
+    }
+    return status;
+}
+Q_STATE_DEF(BasicStateMachine, S122) {
+    QP::QState status;
+    switch (e->sig) {
+        case Q_ENTRY_SIG: {
+            status = Q_RET_HANDLED;
+            break;
+        }
+        case Q_EXIT_SIG:{
+            status = Q_RET_HANDLED;
             break;
         }
         default: {
@@ -47,24 +121,7 @@ Q_STATE_DEF(Blinky, off) {
     return status;
 }
 //............................................................................
-Q_STATE_DEF(Blinky, on) {
-    QP::QState status;
-    switch (e->sig) {
-        case Q_ENTRY_SIG: {
-            status = Q_RET_HANDLED;
-            break;
-        }
-        case TIMEOUT_SIG: {
-            status = tran(&off);
-            break;
-        }
-        default: {
-            status = super(&top);
-            break;
-        }
-    }
-    return status;
-}
+
 
 const char* toto(){
   static char str[] = "Hello World";
