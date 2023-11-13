@@ -1,13 +1,12 @@
 #pragma once
 #include <cstdio>
- #include <cstring>
- extern char defered_print_buffer[1000];
- extern char print_buffer[1000];
-
+#include <cstring>
  void flush_buffer();
 
- template<typename ...T>
- void print(const char* str, T... params){
-   snprintf(print_buffer, 1000, str, params...); 
-   strcat(defered_print_buffer, print_buffer);
- }
+#ifdef ENABLE_PRINT 
+  #define PRINT(str) print(str)
+#else
+  #define PRINT(str) do{} while(0)
+#endif
+
+void print(const char* str);

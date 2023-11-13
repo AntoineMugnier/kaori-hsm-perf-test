@@ -2,8 +2,7 @@
 #include "defered_print.hpp"
 #include "basic_hsm_qpcpp.hpp"
 #include <cstring>
-char defered_print_buffer[1000];
-char print_buffer[1000];
+extern char print_buffer[1000];
 
 BasicStateMachine inst;
 

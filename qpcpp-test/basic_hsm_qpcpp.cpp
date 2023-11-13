@@ -1,6 +1,6 @@
 #include "basic_hsm_qpcpp.hpp"
 #include <array>
-
+#include "defered_print.hpp"
 // local objects --------------------------------------------------------------
 extern "C" {
 
@@ -24,7 +24,7 @@ BasicStateMachine::BasicStateMachine()
 // HSM definition ------------------------------------------------------------
 Q_STATE_DEF(BasicStateMachine, initial) {
     (void)e; // unused parameter
-
+  PRINT("INIT");
     // arm the time event to expire in half a second and every half second
     return tran(&S11);
 }
@@ -121,8 +121,3 @@ Q_STATE_DEF(BasicStateMachine, S122) {
 }
 //............................................................................
 
-
-const char* toto(){
-  static char str[] = "Hello World";
-  return str;
-}
