@@ -1,12 +1,6 @@
-
-extern "C" {
-enum class INTERFACE_SIGNAL{
-  A,
-  B,
-  C,
-  D
-};
-
-
-const char* dispatch_evt(INTERFACE_SIGNAL sig);
-}
+#pragma once
+void init_hsm();
+const char* dispatch_evt_A();
+const char* dispatch_evt_B();
+const char* dispatch_evt_C();
+const char* dispatch_evt_D();

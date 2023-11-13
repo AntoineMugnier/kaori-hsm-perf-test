@@ -2,7 +2,6 @@
 #include <array>
 
 // local objects --------------------------------------------------------------
-BasicStateMachine inst;
 extern "C" {
 
 Q_NORETURN Q_onError(char const * const module, int_t const id) {
@@ -27,7 +26,7 @@ Q_STATE_DEF(BasicStateMachine, initial) {
     (void)e; // unused parameter
 
     // arm the time event to expire in half a second and every half second
-    return tran(&S1);
+    return tran(&S11);
 }
 //............................................................................
 Q_STATE_DEF(BasicStateMachine, S1) {

@@ -67,6 +67,7 @@ fn main() {
         // included header files changed.
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))
         .ctypes_prefix("cty")
+        .blocklist_file("qpcpp-test/basic_hsm_qpcpp.hpp")
         // Finish the builder and generate the bindings.
         .generate()
         // Unwrap the Result and panic on failure.

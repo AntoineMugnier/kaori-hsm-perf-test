@@ -1,8 +1,11 @@
- #include <cstdio>
+#pragma once
+#include <cstdio>
  #include <cstring>
  extern char defered_print_buffer[1000];
  extern char print_buffer[1000];
- 
+
+ void flush_buffer();
+
  template<typename ...T>
  void print(const char* str, T... params){
    snprintf(print_buffer, 1000, str, params...); 

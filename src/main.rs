@@ -76,7 +76,9 @@ fn main() -> ! {
 
         println!("Init state machine");
         sm.init();
-
+        unsafe{
+           init_hsm();
+        }
         let evt_list = [BasicEvt::A, BasicEvt::B];
 
         for evt in evt_list {
@@ -88,7 +90,7 @@ fn main() -> ! {
             defmt::println!("time_us {}", elapsed_time.to_micros());
         }
         unsafe{
-            let s =  CStr::from_ptr(dispatch_evt(INTERFACE_SIGNAL_A) as *const i8);
+            let s =  CStr::from_ptr(dispatch_evt_A() as *const i8);
             defmt::println!("toto value is {}", s.to_str().unwrap());
         }
         loop {
