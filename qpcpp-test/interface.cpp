@@ -1,20 +1,22 @@
 #include "interface.hpp"
 #include "defered_print.hpp"
 #include "basic_hsm_qpcpp.hpp"
-#include <cstring>
 extern char print_buffer[1000];
 
 BasicStateMachine inst;
 
 const char* dispatch_evt(AppSignals sig){
+  RESET_PRINT_BUFFER();
   QP::QEvt evt{sig};
   inst.dispatch(&evt, 0);
   return print_buffer;
 }
 
-void init_hsm(){
+const char* init_hsm(){
+  RESET_PRINT_BUFFER();
   inst = BasicStateMachine();
   inst.init(nullptr, 0);
+  return print_buffer;
 }
 
 const char* dispatch_evt_A(){

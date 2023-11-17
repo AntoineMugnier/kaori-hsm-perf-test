@@ -36,6 +36,19 @@ type Microclock = cortex_m_microclock::CYCCNTClock<SYSCLK_FREQ_HZ>;
 
 include!(concat!(env!("OUT_DIR"), "/wrapper.rs"));
 
+macro_rules! print_time {
+    ($fn_call: expr, $prefix_str: expr) => {
+        {
+            let init_inst = Microclock::now();
+            let ret = $fn_call;
+            let end_inst = Microclock::now();
+            let elapsed_time = end_inst - init_inst;
+            println!("{} took {} µs", $prefix_str, elapsed_time.to_micros());
+            ret 
+        }
+    };
+}
+
 #[entry]
 fn main() -> ! {
        
@@ -72,30 +85,31 @@ fn main() -> ! {
     loop {
         let basic_state_machine = BasicStateMachine::new();
 
-        let mut sm = StateMachine::from(basic_state_machine);
+        let mut kaori_hsm = StateMachine::from(basic_state_machine);
 
         println!("Init state machine");
-        sm.init();
+        print_time!(kaori_hsm.init(), "Kaori HSM init");
         unsafe{
-           init_hsm();
+            let debug_buff = print_time!(init_hsm(), "QPCPP HSM init");
+            let debug_buff = CStr::from_ptr(debug_buff as *const i8);
+            defmt::debug!("{}", debug_buff.to_str().unwrap());
         }
-        let evt_list = [BasicEvt::A, BasicEvt::B];
+
+        let evt_list : [(BasicEvt, unsafe extern "C" fn() -> *const u8); 2] = [(BasicEvt::A, dispatch_evt_A), (BasicEvt::B, dispatch_evt_B)];
 
         for evt in evt_list {
-            println!("\r\nDispatching evt {:?}", evt);
-            let init_inst = Microclock::now();
-            sm.dispatch(&evt);
-            let end_inst = Microclock::now();
-            let elapsed_time = end_inst - init_inst;
-            defmt::println!("time_us {}", elapsed_time.to_micros());
+            println!("\r\nDispatching evt {:?}", evt.0);
+            print_time!(kaori_hsm.dispatch(&evt.0), "Kaori HSM evt dispatch");
+
+            unsafe{
+                let debug_buff = print_time!(evt.1(), "QPCPP HSM evt dispatch");
+                let debug_buff =  CStr::from_ptr(debug_buff as *const i8);
+                defmt::debug!("{}", debug_buff.to_str().unwrap());
+            }
         }
-        unsafe{
-            let s =  CStr::from_ptr(dispatch_evt_A() as *const i8);
-            defmt::println!("toto value is {}", s.to_str().unwrap());
-        }
-        loop {
-        }
-    
+
+        loop {}
+     
     }
 }
 

@@ -1,14 +1,22 @@
 #include "defered_print.hpp"
-char defered_print_buffer[1000];
+#include "stdint.h"
+#include <cstddef>
+#include <cstdint>
 char print_buffer[1000];
+static char* next_buff_start;
 
-
-void flush_buffer()
+void reset_print_buffer()
 {
-   defered_print_buffer[0] = 0;
+   next_buff_start = &print_buffer[0];
 }
 
-void print(const char* str){
-   strcat(defered_print_buffer, print_buffer);
+// Basically just a strcpy without any security
+void print(const char* src){
+  size_t idx = 0;
+  while (src[idx] != '\0'){
+    next_buff_start[idx] = src[idx];
+    idx++;
+  }  
+  next_buff_start += idx;
 }
  

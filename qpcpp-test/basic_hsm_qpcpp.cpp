@@ -24,7 +24,7 @@ BasicStateMachine::BasicStateMachine()
 // HSM definition ------------------------------------------------------------
 Q_STATE_DEF(BasicStateMachine, initial) {
     (void)e; // unused parameter
-  PRINT("INIT");
+    PRINT("INIT");
     // arm the time event to expire in half a second and every half second
     return tran(&S11);
 }
