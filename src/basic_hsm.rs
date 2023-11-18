@@ -2,7 +2,7 @@ use kaori_hsm::*;
 use defmt::{Format, debug};
 
 // Evt definition
-#[derive(Format)]
+#[derive(Format, Debug, Clone, Copy)]
 pub enum BasicEvt {
     A,
     B,

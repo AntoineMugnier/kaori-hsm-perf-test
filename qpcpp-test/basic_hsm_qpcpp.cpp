@@ -33,10 +33,12 @@ Q_STATE_DEF(BasicStateMachine, S1) {
     QP::QState status;
     switch (e->sig) {
         case Q_ENTRY_SIG: {
+          PRINT("S1-ENTRY");
             status = Q_RET_HANDLED;
             break;
         }
         case Q_EXIT_SIG:{
+          PRINT("S1-EXIT");
             status = Q_RET_HANDLED;
             break;
         }

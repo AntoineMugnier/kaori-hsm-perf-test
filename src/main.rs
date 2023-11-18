@@ -94,8 +94,15 @@ fn main() -> ! {
             let debug_buff = CStr::from_ptr(debug_buff as *const i8);
             defmt::debug!("{}", debug_buff.to_str().unwrap());
         }
+        
+        let evt_a: (BasicEvt, unsafe extern "C" fn() -> *const u8) = (BasicEvt::A, dispatch_evt_A);
+        let evt_b: (BasicEvt, unsafe extern "C" fn() -> *const u8) = (BasicEvt::B, dispatch_evt_B);
+        let evt_c: (BasicEvt, unsafe extern "C" fn() -> *const u8) = (BasicEvt::C, dispatch_evt_C);
+        let evt_d: (BasicEvt, unsafe extern "C" fn() -> *const u8) = (BasicEvt::D, dispatch_evt_D);
 
-        let evt_list : [(BasicEvt, unsafe extern "C" fn() -> *const u8); 2] = [(BasicEvt::A, dispatch_evt_A), (BasicEvt::B, dispatch_evt_B)];
+        let evt_list = [
+            evt_a, evt_b, evt_c, evt_d
+        ];
 
         for evt in evt_list {
             println!("\r\nDispatching evt {:?}", evt.0);
