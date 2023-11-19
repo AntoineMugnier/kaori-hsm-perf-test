@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model version="5.3.0" links="0">
+ <framework name="qpcpp"/>
+ <package name="HSM" stereotype="0x00">
+  <class name="QPCPPPerfTestSM" superclass="qpcpp::QHsm">
+   <operation name="QPCPPPerfTestSM" type="" visibility="0x00" properties="0x00">
+    <code>: QP::QHsm(&amp;initial)
+</code>
+   </operation>
+   <statechart properties="0x00">
+    <initial target="../1">
+     <action>PRINT(&quot;TOP_INIT&quot;);</action>
+     <initial_glyph conn="75,2,4,0,8">
+      <action box="0,-2,10,2"/>
+     </initial_glyph>
+    </initial>
+    <state name="S1">
+     <initial target="../4">
+      <action>PRINT(&quot;S1-INIT&quot;);</action>
+      <initial_glyph conn="77,17,4,0,2,4,2">
+       <action box="1,-3,26,5"/>
+      </initial_glyph>
+     </initial>
+     <tran trig="A">
+      <action>PRINT(&quot;S1-HANDLES-A&quot;);</action>
+      <tran_glyph conn="4,16,3,-1,19">
+       <action box="0,-2,39,5"/>
+      </tran_glyph>
+     </tran>
+     <tran trig="D" target="..">
+      <tran_glyph conn="4,40,3,3,-2,9,2">
+       <action box="-2,-3,5,3"/>
+      </tran_glyph>
+     </tran>
+     <tran trig="C" target="../4/2/2">
+      <action>PRINT(&quot;S1-HANDLES-C&quot;);</action>
+      <tran_glyph conn="113,10,0,0,39,24,2">
+       <action box="1,3,31,6"/>
+      </tran_glyph>
+     </tran>
+     <state name="S12">
+      <entry>PRINT(&quot;S12-ENTRY&quot;);</entry>
+      <exit>PRINT(&quot;S12-EXIT&quot;);</exit>
+      <initial target="../2">
+       <action>PRINT(&quot;S12-INIT&quot;);</action>
+       <initial_glyph conn="86,29,5,0,-6,6">
+        <action box="-6,0,20,7"/>
+       </initial_glyph>
+      </initial>
+      <tran trig="B" target="../../5/1">
+       <action>PRINT(&quot;S12-HANDLES-B&quot;);</action>
+       <tran_glyph conn="61,38,3,1,-28">
+        <action box="-20,-5,30,5"/>
+       </tran_glyph>
+      </tran>
+      <state name="S121">
+       <entry>PRINT(&quot;S121-ENTRY&quot;);</entry>
+       <exit>PRINT(&quot;S121-EXIT&quot;);</exit>
+       <initial target="../1">
+        <action>PRINT(&quot;S121-INIT&quot;);</action>
+        <initial_glyph conn="75,47,4,0,4">
+         <action box="0,-2,19,6"/>
+        </initial_glyph>
+       </initial>
+       <state name="S1211">
+        <entry>PRINT(&quot;S1211-ENTRY&quot;);</entry>
+        <exit>PRINT(&quot;S1211-EXIT&quot;);</exit>
+        <tran trig="B" target="../../2">
+         <action>PRINT(&quot;S1211-HANDLES-B&quot;);</action>
+         <tran_glyph conn="95,58,1,3,33">
+          <action box="1,-2,30,4"/>
+         </tran_glyph>
+        </tran>
+        <state_glyph node="69,51,26,24">
+         <entry box="1,2,25,6"/>
+         <exit box="1,8,25,10"/>
+        </state_glyph>
+       </state>
+       <state name="S1212">
+        <entry>PRINT(&quot;S1212-ENTRY&quot;);</entry>
+        <exit>PRINT(&quot;S1212-EXIT&quot;);</exit>
+        <tran trig="C" target="..">
+         <action>PRINT(&quot;S1212-HANDLES-C&quot;);</action>
+         <tran_glyph conn="128,68,5,3,-4,5,4">
+          <action box="-26,1,26,10"/>
+         </tran_glyph>
+        </tran>
+        <tran trig="B" target="../../1">
+         <action>PRINT(&quot;S1212-HANDLES-B&quot;);</action>
+         <tran_glyph conn="128,62,3,1,-33">
+          <action box="-32,0,25,4"/>
+         </tran_glyph>
+        </tran>
+        <state_glyph node="128,51,23,24">
+         <entry box="1,2,22,5"/>
+         <exit box="1,7,22,5"/>
+        </state_glyph>
+       </state>
+       <state_glyph node="66,35,87,44">
+        <entry box="1,2,29,4"/>
+        <exit box="1,6,38,7"/>
+       </state_glyph>
+      </state>
+      <state_glyph node="61,21,94,60">
+       <entry box="1,2,21,5"/>
+       <exit box="1,7,26,5"/>
+      </state_glyph>
+     </state>
+     <state name="S11">
+      <entry>PRINT(&quot;S11-ENTRY&quot;);</entry>
+      <exit>PRINT(&quot;S11-EXIT&quot;);</exit>
+      <initial target="../1">
+       <action>PRINT(&quot;S11-INIT&quot;);</action>
+       <initial_glyph conn="25,29,4,0,5">
+        <action box="0,-1,23,8"/>
+       </initial_glyph>
+      </initial>
+      <state name="S111">
+       <entry>PRINT(&quot;S111-ENTRY&quot;);</entry>
+       <exit>PRINT(&quot;S111-ENTRY&quot;);</exit>
+       <tran trig="B" target="../../../4/2/1">
+        <action>PRINT(&quot;S111-HANDLES-B&quot;);</action>
+        <tran_glyph conn="33,51,1,3,23,7,13">
+         <action box="1,-4,25,15"/>
+        </tran_glyph>
+       </tran>
+       <state_glyph node="12,34,21,21">
+        <entry box="1,2,20,7"/>
+        <exit box="1,9,20,7"/>
+       </state_glyph>
+      </state>
+      <state_glyph node="8,20,32,41">
+       <entry box="1,2,27,5"/>
+       <exit box="1,7,31,6"/>
+      </state_glyph>
+     </state>
+     <state_glyph node="4,10,155,74"/>
+    </state>
+    <state_diagram size="171,88"/>
+   </statechart>
+  </class>
+ </package>
+ <directory name=".">
+  <file name="qpcpp_perf_test_sm.hpp">
+   <text>#pragma once 
+#include &quot;qpcpp.hpp&quot;
+enum AppSignals : QP::QSignal {
+    DUMMY_SIG = QP::Q_USER_SIG,
+    A_SIG,
+    B_SIG,
+    C_SIG,
+    D_SIG
+};
+
+
+$declare(HSM::QPCPPPerfTestSM)</text>
+  </file>
+  <file name="qpcpp_perf_test_sm.cpp">
+   <text>#include &quot;qpcpp_perf_test_sm.hpp&quot;
+#include &quot;defered_print.hpp&quot;
+// local objects --------------------------------------------------------------
+extern &quot;C&quot; {
+
+Q_NORETURN Q_onError(char const * const module, int_t const id) {
+    // NOTE: this implementation of the assertion handler is intended only
+    // for debugging and MUST be changed for deployment of the application
+    // (assuming that you ship your production code with assertions enabled).
+    Q_UNUSED_PAR(module);
+    Q_UNUSED_PAR(id);
+    QS_ASSERTION(module, id, 10000U);
+}
+}
+
+$define(HSM::QPCPPPerfTestSM)</text>
+  </file>
+ </directory>
+</model>
