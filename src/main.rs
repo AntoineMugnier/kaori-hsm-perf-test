@@ -101,7 +101,7 @@ fn main() -> ! {
         let evt_d: (BasicEvt, unsafe extern "C" fn() -> *const u8) = (BasicEvt::D, dispatch_evt_D);
 
         let evt_list = [
-            evt_a, evt_b, evt_c, evt_d
+            evt_a, evt_b, evt_c, evt_d, evt_b, evt_b
         ];
 
         for evt in evt_list {
