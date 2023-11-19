@@ -15,6 +15,8 @@
      </initial_glyph>
     </initial>
     <state name="S1">
+     <entry>PRINT(&quot;S1-ENTRY&quot;);</entry>
+     <exit>PRINT(&quot;S1-EXIT&quot;);</exit>
      <initial target="../3">
       <action>PRINT(&quot;S1-INIT&quot;);</action>
       <initial_glyph conn="77,17,4,0,2,4,2">
@@ -129,7 +131,10 @@
        <exit box="1,7,31,6"/>
       </state_glyph>
      </state>
-     <state_glyph node="4,10,155,74"/>
+     <state_glyph node="4,10,155,74">
+      <entry box="1,2,6,2"/>
+      <exit box="1,4,6,2"/>
+     </state_glyph>
     </state>
     <state_diagram size="171,88"/>
    </statechart>

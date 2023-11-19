@@ -11,12 +11,11 @@ pub enum SMEvent {
 }
 
 pub struct KaoriPerfTestSM {
-    a: u8,
 }
 
 impl KaoriPerfTestSM {
     pub fn new() -> KaoriPerfTestSM {
-        KaoriPerfTestSM { a: 0 }
+        KaoriPerfTestSM {}
     }
 }
 //type KaoriPerfTestSM = StateMachine<BasicData, SMEvent>;
@@ -26,7 +25,7 @@ impl ProtoStateMachine for KaoriPerfTestSM {
 
     fn init(&mut self) -> InitResult<Self> {
         debug!("TOP_INIT");
-        init_transition!(S11)
+        init_transition!(S1)
     }
 }
 
@@ -34,7 +33,7 @@ impl ProtoStateMachine for KaoriPerfTestSM {
 impl State<S1> for KaoriPerfTestSM {
     fn init(&mut self) -> InitResult<Self> {
         debug!("S1-INIT");
-        init_transition!(S11)
+        init_transition!(S12)
     }
 
     fn exit(&mut self) {
@@ -51,13 +50,9 @@ impl State<S1> for KaoriPerfTestSM {
                 debug!("S1-HANDLES-A");
                 handled!()
             }
-            SMEvent::C => {
-                debug!("S1-HANDLES-C");
-                transition!(S122)
-            }
             SMEvent::D => {
                 debug!("S1-HANDLES-D");
-                transition!(S1)
+                transition!(S1212)
             }
             _ => ignored!(),
         }
@@ -66,6 +61,11 @@ impl State<S1> for KaoriPerfTestSM {
 
 #[state(super_state= S1)]
 impl State<S11> for KaoriPerfTestSM {
+     fn init(&mut self) -> InitResult<Self> {
+        debug!("S11-INIT");
+        init_transition!(S111)
+    }
+
     fn exit(&mut self) {
         debug!("S11-EXIT");
     }
@@ -76,27 +76,31 @@ impl State<S11> for KaoriPerfTestSM {
 
     fn handle(&mut self, evt: &SMEvent) -> HandleResult<Self> {
         match evt {
-            SMEvent::A => {
-                debug!("S11-HANDLES-A");
-                transition!(S121)
-            }
+            _ => ignored!(),
+        }
+    }
+}
+#[state(super_state= S11)]
+impl State<S111> for KaoriPerfTestSM {
+
+    fn exit(&mut self) {
+        debug!("S111-EXIT");
+    }
+
+    fn entry(&mut self) {
+        debug!("S111-ENTRY");
+    }
+
+    fn handle(&mut self, evt: &SMEvent) -> HandleResult<Self> {
+        match evt {
             SMEvent::B => {
-                debug!("S11-HANDLES-B");
-
-                self.a += 1;
-
-                if self.a == 2 {
-                    self.a = 0;
-                    transition!(S12)
-                } else {
-                    ignored!()
-                }
+              debug!("S111-HANDLES-B");
+              transition!(S1211)
             }
             _ => ignored!(),
         }
     }
 }
-
 #[state(super_state= S1)]
 impl State<S12> for KaoriPerfTestSM {
     fn init(&mut self) -> InitResult<Self> {
@@ -116,11 +120,7 @@ impl State<S12> for KaoriPerfTestSM {
         match evt {
             SMEvent::B => {
                 debug!("S12-HANDLES-B");
-                handled!()
-            }
-            SMEvent::D => {
-                debug!("S12-HANDLES-D");
-                transition!(S121)
+                transition!(S111)
             }
             _ => ignored!(),
         }
@@ -129,6 +129,11 @@ impl State<S12> for KaoriPerfTestSM {
 
 #[state(super_state= S12)]
 impl State<S121> for KaoriPerfTestSM {
+     fn init(&mut self) -> InitResult<Self> {
+        debug!("S121-INIT");
+        init_transition!(S1211)
+    }
+
     fn exit(&mut self) {
         debug!("S121-EXIT");
     }
@@ -139,46 +144,51 @@ impl State<S121> for KaoriPerfTestSM {
 
     fn handle(&mut self, evt: &SMEvent) -> HandleResult<Self> {
         match evt {
-            SMEvent::A => {
-                debug!("S121-HANDLES-A");
-                transition!(S122)
-            }
+            _ => ignored!(),
+        }
+    }
+}
+
+#[state(super_state= S121)]
+impl State<S1211> for KaoriPerfTestSM {
+    fn exit(&mut self) {
+        debug!("S1211-EXIT");
+    }
+
+    fn entry(&mut self) {
+        debug!("S1211-ENTRY");
+    }
+
+    fn handle(&mut self, evt: &SMEvent) -> HandleResult<Self> {
+        match evt {
             SMEvent::B => {
-                debug!("S121-HANDLES-B");
-                transition!(S12)
-            }
-            SMEvent::C => {
-                debug!("S121-HANDLES-C");
-                transition!(S11)
+                debug!("S1211-HANDLES-B");
+                transition!(S1212)
             }
             _ => ignored!(),
         }
     }
 }
 
-#[state(super_state= S12)]
-impl State<S122> for KaoriPerfTestSM {
+#[state(super_state= S121)]
+impl State<S1212> for KaoriPerfTestSM {
     fn exit(&mut self) {
-        debug!("S122-EXIT");
+        debug!("S1212-EXIT");
     }
 
     fn entry(&mut self) {
-        debug!("S122-ENTRY");
+        debug!("S1212-ENTRY");
     }
 
     fn handle(&mut self, evt: &SMEvent) -> HandleResult<Self> {
         match evt {
             SMEvent::B => {
-                debug!("S122-HANDLES-B");
-                handled!()
+                debug!("S1212-HANDLES-B");
+                transition!(S1211)
             }
             SMEvent::C => {
-                debug!("S122-HANDLES-C");
-                transition!(S122)
-            }
-            SMEvent::D => {
-                debug!("S122-HANDLES-D");
-                transition!(S1)
+                debug!("S1212-HANDLES-C");
+                transition!(S1212)
             }
             _ => ignored!(),
         }

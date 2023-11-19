@@ -71,6 +71,18 @@ Q_STATE_DEF(QPCPPPerfTestSM, initial) {
 Q_STATE_DEF(QPCPPPerfTestSM, S1) {
     QP::QState status_;
     switch (e->sig) {
+        //${HSM::QPCPPPerfTestSM::SM::S1}
+        case Q_ENTRY_SIG: {
+            PRINT("S1-ENTRY");
+            status_ = Q_RET_HANDLED;
+            break;
+        }
+        //${HSM::QPCPPPerfTestSM::SM::S1}
+        case Q_EXIT_SIG: {
+            PRINT("S1-EXIT");
+            status_ = Q_RET_HANDLED;
+            break;
+        }
         //${HSM::QPCPPPerfTestSM::SM::S1::initial}
         case Q_INIT_SIG: {
             PRINT("S1-INIT");
