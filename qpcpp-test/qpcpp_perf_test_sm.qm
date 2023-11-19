@@ -15,7 +15,7 @@
      </initial_glyph>
     </initial>
     <state name="S1">
-     <initial target="../4">
+     <initial target="../3">
       <action>PRINT(&quot;S1-INIT&quot;);</action>
       <initial_glyph conn="77,17,4,0,2,4,2">
        <action box="1,-3,26,5"/>
@@ -27,12 +27,7 @@
        <action box="0,-2,39,5"/>
       </tran_glyph>
      </tran>
-     <tran trig="D" target="..">
-      <tran_glyph conn="4,40,3,3,-2,9,2">
-       <action box="-2,-3,5,3"/>
-      </tran_glyph>
-     </tran>
-     <tran trig="D" target="../4/2/2">
+     <tran trig="D" target="../3/2/2">
       <action>PRINT(&quot;S1-HANDLES-D&quot;);</action>
       <tran_glyph conn="113,10,0,0,39,24,2">
        <action box="1,3,31,6"/>
@@ -47,7 +42,7 @@
         <action box="-6,0,20,7"/>
        </initial_glyph>
       </initial>
-      <tran trig="B" target="../../5/1">
+      <tran trig="B" target="../../4/1">
        <action>PRINT(&quot;S12-HANDLES-B&quot;);</action>
        <tran_glyph conn="61,38,3,1,-28">
         <action box="-20,-5,30,5"/>
@@ -118,7 +113,7 @@
       <state name="S111">
        <entry>PRINT(&quot;S111-ENTRY&quot;);</entry>
        <exit>PRINT(&quot;S111-ENTRY&quot;);</exit>
-       <tran trig="B" target="../../../4/2/1">
+       <tran trig="B" target="../../../3/2/1">
         <action>PRINT(&quot;S111-HANDLES-B&quot;);</action>
         <tran_glyph conn="33,51,1,3,23,7,13">
          <action box="1,-4,25,15"/>

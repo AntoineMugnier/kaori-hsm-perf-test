@@ -18,14 +18,14 @@
 
 #![no_main]
 #![no_std]
-mod basic_hsm;
+mod kaori_perf_test_sm;
 use kaori_hsm::StateMachine;
-use basic_hsm::BasicStateMachine;
+use kaori_perf_test_sm::KaoriPerfTestSM;
 use cortex_m_rt::{entry, exception};
 use defmt::println;
 use stm32f1::stm32f103;
 use cortex_m::peripheral::syst;
-use basic_hsm::BasicEvt;
+use kaori_perf_test_sm::SMEvent;
 use defmt_rtt as _; // global logger
 use panic_probe as _;
 use core::ffi::CStr;
@@ -83,7 +83,7 @@ fn main() -> ! {
     systick.enable_interrupt();
 
     loop {
-        let basic_state_machine = BasicStateMachine::new();
+        let basic_state_machine = KaoriPerfTestSM::new();
 
         let mut kaori_hsm = StateMachine::from(basic_state_machine);
 
@@ -95,10 +95,10 @@ fn main() -> ! {
             defmt::debug!("{}", debug_buff.to_str().unwrap());
         }
         
-        let evt_a: (BasicEvt, unsafe extern "C" fn() -> *const u8) = (BasicEvt::A, dispatch_evt_A);
-        let evt_b: (BasicEvt, unsafe extern "C" fn() -> *const u8) = (BasicEvt::B, dispatch_evt_B);
-        let evt_c: (BasicEvt, unsafe extern "C" fn() -> *const u8) = (BasicEvt::C, dispatch_evt_C);
-        let evt_d: (BasicEvt, unsafe extern "C" fn() -> *const u8) = (BasicEvt::D, dispatch_evt_D);
+        let evt_a: (SMEvent, unsafe extern "C" fn() -> *const u8) = (SMEvent::A, dispatch_evt_A);
+        let evt_b: (SMEvent, unsafe extern "C" fn() -> *const u8) = (SMEvent::B, dispatch_evt_B);
+        let evt_c: (SMEvent, unsafe extern "C" fn() -> *const u8) = (SMEvent::C, dispatch_evt_C);
+        let evt_d: (SMEvent, unsafe extern "C" fn() -> *const u8) = (SMEvent::D, dispatch_evt_D);
 
         let evt_list = [
             evt_a, evt_b, evt_c, evt_d, evt_b, evt_b

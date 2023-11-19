@@ -3,26 +3,26 @@ use defmt::{Format, debug};
 
 // Evt definition
 #[derive(Format, Debug, Clone, Copy)]
-pub enum BasicEvt {
+pub enum SMEvent {
     A,
     B,
     C,
     D,
 }
 
-pub struct BasicStateMachine {
+pub struct KaoriPerfTestSM {
     a: u8,
 }
 
-impl BasicStateMachine {
-    pub fn new() -> BasicStateMachine {
-        BasicStateMachine { a: 0 }
+impl KaoriPerfTestSM {
+    pub fn new() -> KaoriPerfTestSM {
+        KaoriPerfTestSM { a: 0 }
     }
 }
-//type BasicStateMachine = StateMachine<BasicData, BasicEvt>;
+//type KaoriPerfTestSM = StateMachine<BasicData, SMEvent>;
 
-impl ProtoStateMachine for BasicStateMachine {
-    type Evt = BasicEvt;
+impl ProtoStateMachine for KaoriPerfTestSM {
+    type Evt = SMEvent;
 
     fn init(&mut self) -> InitResult<Self> {
         debug!("TOP_INIT");
@@ -31,7 +31,7 @@ impl ProtoStateMachine for BasicStateMachine {
 }
 
 #[state(super_state= Top)]
-impl State<S1> for BasicStateMachine {
+impl State<S1> for KaoriPerfTestSM {
     fn init(&mut self) -> InitResult<Self> {
         debug!("S1-INIT");
         init_transition!(S11)
@@ -45,17 +45,17 @@ impl State<S1> for BasicStateMachine {
         debug!("S1-ENTRY");
     }
 
-    fn handle(&mut self, evt: &BasicEvt) -> HandleResult<Self> {
+    fn handle(&mut self, evt: &SMEvent) -> HandleResult<Self> {
         match evt {
-            BasicEvt::A => {
+            SMEvent::A => {
                 debug!("S1-HANDLES-A");
                 handled!()
             }
-            BasicEvt::C => {
+            SMEvent::C => {
                 debug!("S1-HANDLES-C");
                 transition!(S122)
             }
-            BasicEvt::D => {
+            SMEvent::D => {
                 debug!("S1-HANDLES-D");
                 transition!(S1)
             }
@@ -65,7 +65,7 @@ impl State<S1> for BasicStateMachine {
 }
 
 #[state(super_state= S1)]
-impl State<S11> for BasicStateMachine {
+impl State<S11> for KaoriPerfTestSM {
     fn exit(&mut self) {
         debug!("S11-EXIT");
     }
@@ -74,13 +74,13 @@ impl State<S11> for BasicStateMachine {
         debug!("S11-ENTRY");
     }
 
-    fn handle(&mut self, evt: &BasicEvt) -> HandleResult<Self> {
+    fn handle(&mut self, evt: &SMEvent) -> HandleResult<Self> {
         match evt {
-            BasicEvt::A => {
+            SMEvent::A => {
                 debug!("S11-HANDLES-A");
                 transition!(S121)
             }
-            BasicEvt::B => {
+            SMEvent::B => {
                 debug!("S11-HANDLES-B");
 
                 self.a += 1;
@@ -98,7 +98,7 @@ impl State<S11> for BasicStateMachine {
 }
 
 #[state(super_state= S1)]
-impl State<S12> for BasicStateMachine {
+impl State<S12> for KaoriPerfTestSM {
     fn init(&mut self) -> InitResult<Self> {
         debug!("S12-INIT");
         init_transition!(S121)
@@ -112,13 +112,13 @@ impl State<S12> for BasicStateMachine {
         debug!("S12-ENTRY");
     }
 
-    fn handle(&mut self, evt: &BasicEvt) -> HandleResult<Self> {
+    fn handle(&mut self, evt: &SMEvent) -> HandleResult<Self> {
         match evt {
-            BasicEvt::B => {
+            SMEvent::B => {
                 debug!("S12-HANDLES-B");
                 handled!()
             }
-            BasicEvt::D => {
+            SMEvent::D => {
                 debug!("S12-HANDLES-D");
                 transition!(S121)
             }
@@ -128,7 +128,7 @@ impl State<S12> for BasicStateMachine {
 }
 
 #[state(super_state= S12)]
-impl State<S121> for BasicStateMachine {
+impl State<S121> for KaoriPerfTestSM {
     fn exit(&mut self) {
         debug!("S121-EXIT");
     }
@@ -137,17 +137,17 @@ impl State<S121> for BasicStateMachine {
         debug!("S121-ENTRY");
     }
 
-    fn handle(&mut self, evt: &BasicEvt) -> HandleResult<Self> {
+    fn handle(&mut self, evt: &SMEvent) -> HandleResult<Self> {
         match evt {
-            BasicEvt::A => {
+            SMEvent::A => {
                 debug!("S121-HANDLES-A");
                 transition!(S122)
             }
-            BasicEvt::B => {
+            SMEvent::B => {
                 debug!("S121-HANDLES-B");
                 transition!(S12)
             }
-            BasicEvt::C => {
+            SMEvent::C => {
                 debug!("S121-HANDLES-C");
                 transition!(S11)
             }
@@ -157,7 +157,7 @@ impl State<S121> for BasicStateMachine {
 }
 
 #[state(super_state= S12)]
-impl State<S122> for BasicStateMachine {
+impl State<S122> for KaoriPerfTestSM {
     fn exit(&mut self) {
         debug!("S122-EXIT");
     }
@@ -166,17 +166,17 @@ impl State<S122> for BasicStateMachine {
         debug!("S122-ENTRY");
     }
 
-    fn handle(&mut self, evt: &BasicEvt) -> HandleResult<Self> {
+    fn handle(&mut self, evt: &SMEvent) -> HandleResult<Self> {
         match evt {
-            BasicEvt::B => {
+            SMEvent::B => {
                 debug!("S122-HANDLES-B");
                 handled!()
             }
-            BasicEvt::C => {
+            SMEvent::C => {
                 debug!("S122-HANDLES-C");
                 transition!(S122)
             }
-            BasicEvt::D => {
+            SMEvent::D => {
                 debug!("S122-HANDLES-D");
                 transition!(S1)
             }
