@@ -118,8 +118,8 @@ impl State<S12> for KaoriPerfTestSM {
 
     fn handle(&mut self, evt: &SMEvent) -> HandleResult<Self> {
         match evt {
-            SMEvent::B => {
-                debug!("S12-HANDLES-B");
+            SMEvent::C => {
+                debug!("S12-HANDLES-C");
                 transition!(S111)
             }
             _ => ignored!(),

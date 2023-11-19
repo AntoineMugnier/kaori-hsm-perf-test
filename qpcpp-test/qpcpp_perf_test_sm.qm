@@ -44,8 +44,8 @@
         <action box="-6,0,20,7"/>
        </initial_glyph>
       </initial>
-      <tran trig="B" target="../../4/1">
-       <action>PRINT(&quot;S12-HANDLES-B&quot;);</action>
+      <tran trig="C" target="../../4/1">
+       <action>PRINT(&quot;S12-HANDLES-C&quot;);</action>
        <tran_glyph conn="61,38,3,1,-28">
         <action box="-20,-5,30,5"/>
        </tran_glyph>

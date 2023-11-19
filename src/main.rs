@@ -101,7 +101,7 @@ fn main() -> ! {
         let evt_d: (SMEvent, unsafe extern "C" fn() -> *const u8) = (SMEvent::D, dispatch_evt_D);
 
         let evt_list = [
-            evt_a, evt_b, evt_c, evt_d, evt_b, evt_b
+            evt_a, evt_b, evt_c, evt_d, evt_b, evt_c, evt_b
         ];
 
         for evt in evt_list {

@@ -131,9 +131,9 @@ Q_STATE_DEF(QPCPPPerfTestSM, S12) {
             status_ = tran(&S121);
             break;
         }
-        //${HSM::QPCPPPerfTestSM::SM::S1::S12::B}
-        case B_SIG: {
-            PRINT("S12-HANDLES-B");
+        //${HSM::QPCPPPerfTestSM::SM::S1::S12::C}
+        case C_SIG: {
+            PRINT("S12-HANDLES-C");
             status_ = tran(&S111);
             break;
         }
