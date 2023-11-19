@@ -16,7 +16,12 @@ void print(const char* src){
   while (src[idx] != '\0'){
     next_buff_start[idx] = src[idx];
     idx++;
-  }  
-  next_buff_start += idx;
+  }
+  next_buff_start[idx] = '\r';
+  next_buff_start[idx+1] = '\n';
+  next_buff_start += (idx + 2);
+}
+void close_buffer(){
+ *next_buff_start = '\0';
 }
  

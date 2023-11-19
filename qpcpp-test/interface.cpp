@@ -9,6 +9,7 @@ const char* dispatch_evt(AppSignals sig){
   RESET_PRINT_BUFFER();
   QP::QEvt evt{sig};
   inst.dispatch(&evt, 0);
+  CLOSE_BUFFER();
   return print_buffer;
 }
 
@@ -16,6 +17,7 @@ const char* init_hsm(){
   RESET_PRINT_BUFFER();
   inst = QPCPPPerfTestSM();
   inst.init(nullptr, 0);
+  CLOSE_BUFFER();
   return print_buffer;
 }
 
