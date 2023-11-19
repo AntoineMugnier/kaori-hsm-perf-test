@@ -48,7 +48,7 @@ fn main() {
     
     // Compile qpcpp-test external lib
 
-    let cmd_output = Command::new("bash").arg("build.sh").current_dir("qpcpp-test").env("DEFMT_LOG",std::env::var("DEFMT_LOG").unwrap()).output().expect("Cannot execute qpcpp-test/build.sh");
+    let cmd_output = Command::new("bash").arg("build.sh").current_dir("qpcpp-test").env("DEFMT_LOG",std::env::var("DEFMT_LOG").unwrap_or_else(|_|String::from(""))).output().expect("Cannot execute qpcpp-test/build.sh");
     let status = cmd_output.status;
     if !status.success(){
         panic!("Cannot compile qpcpp-test: \r\n{}", String::from_utf8(cmd_output.stderr).unwrap())
