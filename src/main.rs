@@ -19,7 +19,7 @@
 #![no_main]
 #![no_std]
 mod kaori_perf_test_sm;
-use kaori_hsm::StateMachine;
+use kaori_hsm::InitStateMachine;
 use kaori_perf_test_sm::KaoriPerfTestSM;
 use cortex_m_rt::{entry, exception};
 use defmt::println;
@@ -85,10 +85,10 @@ fn main() -> ! {
     loop {
         let basic_state_machine = KaoriPerfTestSM::new();
 
-        let mut kaori_hsm = StateMachine::from(basic_state_machine);
+        let kaori_ism = InitStateMachine::from(basic_state_machine);
 
         println!("Init state machine");
-        print_time!(kaori_hsm.init(), "Kaori HSM init");
+        let mut kaori_hsm = print_time!(kaori_ism.init(), "Kaori HSM init");
         unsafe{
             let debug_buff = print_time!(init_hsm(), "QPCPP HSM init");
             let debug_buff = CStr::from_ptr(debug_buff as *const i8);
