@@ -80,13 +80,13 @@ fn main() -> ! {
     Microclock::init(&mut dcb, dwt);
     
     // Delayed enabling of systick IRQs as `Microclock::update()` should not be triggered before call to `Microclock::init()`
-    systick.enable_interrupt();
+    //systick.enable_interrupt();
 
     loop {
         let basic_state_machine = KaoriPerfTestSM::new();
 
         let kaori_ism = InitStateMachine::from(basic_state_machine);
-
+        
         println!("Init state machine");
         let mut kaori_hsm = print_time!(kaori_ism.init(), "Kaori HSM init");
         unsafe{
