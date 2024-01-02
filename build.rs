@@ -12,7 +12,7 @@
 
 use std::env;
 use std::fs::File;
-use std::io::{Write};
+use std::io::Write;
 use std::path::PathBuf;
 use std::process::Command;
 
@@ -42,16 +42,26 @@ fn main() {
     // Set the linker script to the one provided by cortex-m-rt.
     println!("cargo:rustc-link-arg=-Tlink.x");
 
-
     println!("cargo:rustc-linker=flip-link");
     println!("cargo:rustc-link-arg=-Tdefmt.x");
-    
+
     // Compile qpcpp-test external lib
 
-    let cmd_output = Command::new("bash").arg("build.sh").current_dir("qpcpp-test").env("DEFMT_LOG",std::env::var("DEFMT_LOG").unwrap_or_else(|_|String::from(""))).output().expect("Cannot execute qpcpp-test/build.sh");
+    let cmd_output = Command::new("bash")
+        .arg("build.sh")
+        .current_dir("qpcpp-test")
+        .env(
+            "DEFMT_LOG",
+            std::env::var("DEFMT_LOG").unwrap_or_else(|_| String::from("")),
+        )
+        .output()
+        .expect("Cannot execute qpcpp-test/build.sh");
     let status = cmd_output.status;
-    if !status.success(){
-        panic!("Cannot compile qpcpp-test: \r\n{}", String::from_utf8(cmd_output.stderr).unwrap())
+    if !status.success() {
+        panic!(
+            "Cannot compile qpcpp-test: \r\n{}",
+            String::from_utf8(cmd_output.stderr).unwrap()
+        )
     }
 
     println!("cargo:rustc-link-search=native=qpcpp-test/build");
@@ -60,7 +70,7 @@ fn main() {
     // This build.rs script is rerun if any source or header of the lib changes
     println!("cargo:rerun-if-changed=qpcpp-test");
 
-   let bindings = bindgen::Builder::default()
+    let bindings = bindgen::Builder::default()
         // The input header we would like to generate
         // bindings for.
         .header("qpcpp-test/wrapper.hpp")
@@ -76,6 +86,5 @@ fn main() {
     // Write the bindings to the $OUT_DIR/wrapper.rs file.
     bindings
         .write_to_file(out.join("wrapper.rs"))
-        .expect("Couldn't write wrapper.rs!");   
-  
+        .expect("Couldn't write wrapper.rs!");
 }
