@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.2)
+
+project(kaori-hsm-perf-test LANGUAGES C CXX ASM)
+set(CMAKE_CXX_STANDARD              17)
+set(CMAKE_C_STANDARD                11)
+add_library(qpcpp-tst STATIC ${CMAKE_CURRENT_SOURCE_DIR}/qpcpp_perf_test_sm.cpp ${CMAKE_CURRENT_SOURCE_DIR}/interface.cpp ${CMAKE_CURRENT_SOURCE_DIR}/defered_print.cpp)
+add_subdirectory(./qpcpp/)
+target_link_libraries(qpcpp-tst PRIVATE qpcpp)
+if ($ENV{DEFMT_LOG} STREQUAL "trace" OR $ENV{DEFMT_LOG} STREQUAL "debug")
+  target_compile_definitions(qpcpp-tst PRIVATE ENABLE_PRINT)
+endif()
