@@ -22,5 +22,5 @@ Every action taken by the state machine will be notified to host. No performance
     DEMFT_LOG=debug cargo run 
 ```
 
-## Diagram of the state machine of the test
+# Diagram of the state machine of the test
 ![intro_hsm](https://github.com/AntoineMugnier/kaori-hsm-perf-test/blob/assets/kaori-hsm-perf-test.png?raw=true)
