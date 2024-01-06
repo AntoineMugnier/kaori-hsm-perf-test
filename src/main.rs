@@ -74,8 +74,10 @@ fn main() -> ! {
     let dwt = cp.DWT;
     Microclock::init(&mut dcb, dwt);
 
-    // Delayed enabling of systick IRQs as `Microclock::update()` should not be triggered before call to `Microclock::init()`
-    //systick.enable_interrupt();
+    // Interrupts are disabled because they induce delays during program execution, thus making
+    // the performance results unreliable. However at some point, the microclock will overflow, but long
+    // after we end our test.
+    //systick.enable_interrupt(); 
 
     loop {
         let basic_state_machine = KaoriPerfTestSM::new();
