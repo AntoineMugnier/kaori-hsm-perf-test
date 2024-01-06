@@ -10,8 +10,9 @@ SET(CMAKE_C_FLAGS "${COMPILER_OPTIONS} -lm -lc -lnosys --specs=nosys.specs -ffun
 SET(CMAKE_CXX_FLAGS "${COMPILER_OPTIONS} -lm -lc -lnosys --specs=nosys.specs -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions " CACHE INTERNAL "cxx compiler flags")
 SET(CMAKE_ASM_FLAGS "${COMPILER_OPTIONS}" CACHE INTERNAL "asm compiler flags")
 
-SET(CMAKE_EXE_LINKER_FLAGS "${COMPILER_OPTIONS} -Wl,-Map=linker.map -Wl,-cref -Wl,--gc-sections" CACHE INTERNAL "exe link flags")# Define compiler settings
+SET(CMAKE_EXE_LINKER_FLAGS "${COMPILER_OPTIONS} -Wl,-Map=linker.map -Wl,-cref -Wl,--gc-sections" CACHE INTERNAL "exe link flags")
 
+# Define compiler settings
 SET(CMAKE_AR               ${TOOL_CHAIN_PREFIX}-gcc-ar)
 SET(CMAKE_RANLIB           ${TOOL_CHAIN_PREFIX}-gcc-ranlib)
 SET(CMAKE_LD               ${TOOL_CHAIN_PREFIX}-ld)

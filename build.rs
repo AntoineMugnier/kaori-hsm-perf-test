@@ -46,7 +46,6 @@ fn main() {
     println!("cargo:rustc-link-arg=-Tdefmt.x");
 
     // Compile qpcpp-test external lib
-
     let cmd_output = Command::new("bash")
         .arg("build.sh")
         .current_dir("qpcpp-test")
