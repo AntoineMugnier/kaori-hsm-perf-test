@@ -1,7 +1,7 @@
 # Purpose of this test 
-This test aims to test the performance of the kaori_hsm library in comparaison to the QEP library developped by Miro Samek.
+This test aims to test the performance of the kaori_hsm library in comparison to the QEP library developed by Miro Samek.
 QEP performances have been taken as a reference as it is a library which has long proven to be efficient and robust for developing
-hierarhical state machines in C++.
+hierarchical state machines in C++.
 The test is mostly written in Rust. Only QEP along with some interface code are precompiled in C++ and called from the Rust code.
 
 # Required Hardware
@@ -23,7 +23,7 @@ Faster mode, nothing else than the performance result is reported to host.
     DEMFT_LOG=info cargo run --release
 ```
 ## Run the test for debug
-Every action taken by the state machine will be notified to host. No performance can be evaluated in this mode.
+Every action taken by the state machine will be reported to the host. No performance can be evaluated in this mode.
 ```shell
     DEMFT_LOG=debug cargo run 
 ```
