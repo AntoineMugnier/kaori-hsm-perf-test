@@ -6,7 +6,7 @@ name = "kaori-hsm-perf-test"
 version = "0.1.0"
 
 [dependencies]
-kaori_hsm= {path = "../kaori-hsm/kaori_hsm"}
+kaori-hsm= "0.1.0"
 cortex-m = {version="0.7.7", features=["critical-section-single-core"]}
 cortex-m-microclock= "0.1.0"
 defmt = "0.3.4"
