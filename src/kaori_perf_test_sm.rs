@@ -19,7 +19,7 @@ impl KaoriPerfTestSM {
 }
 //type KaoriPerfTestSM = StateMachine<BasicData, SMEvent>;
 
-impl ProtoStateMachine for KaoriPerfTestSM {
+impl TopState for KaoriPerfTestSM {
     type Evt = SMEvent;
 
     fn init(&mut self) -> InitResult<Self> {
