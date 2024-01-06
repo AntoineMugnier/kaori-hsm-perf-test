@@ -1,5 +1,5 @@
+use defmt::{debug, Format};
 use kaori_hsm::*;
-use defmt::{Format, debug};
 
 // Evt definition
 #[derive(Format, Debug, Clone, Copy)]
@@ -10,8 +10,7 @@ pub enum SMEvent {
     D,
 }
 
-pub struct KaoriPerfTestSM {
-}
+pub struct KaoriPerfTestSM {}
 
 impl KaoriPerfTestSM {
     pub fn new() -> KaoriPerfTestSM {
@@ -20,7 +19,7 @@ impl KaoriPerfTestSM {
 }
 //type KaoriPerfTestSM = StateMachine<BasicData, SMEvent>;
 
-impl ProtoStateMachine for KaoriPerfTestSM {
+impl TopState for KaoriPerfTestSM {
     type Evt = SMEvent;
 
     fn init(&mut self) -> InitResult<Self> {
@@ -61,7 +60,7 @@ impl State<S1> for KaoriPerfTestSM {
 
 #[state(super_state= S1)]
 impl State<S11> for KaoriPerfTestSM {
-     fn init(&mut self) -> InitResult<Self> {
+    fn init(&mut self) -> InitResult<Self> {
         debug!("S11-INIT");
         init_transition!(S111)
     }
@@ -82,7 +81,6 @@ impl State<S11> for KaoriPerfTestSM {
 }
 #[state(super_state= S11)]
 impl State<S111> for KaoriPerfTestSM {
-
     fn exit(&mut self) {
         debug!("S111-EXIT");
     }
@@ -94,8 +92,8 @@ impl State<S111> for KaoriPerfTestSM {
     fn handle(&mut self, evt: &SMEvent) -> HandleResult<Self> {
         match evt {
             SMEvent::B => {
-              debug!("S111-HANDLES-B");
-              transition!(S1211)
+                debug!("S111-HANDLES-B");
+                transition!(S1211)
             }
             _ => ignored!(),
         }
@@ -129,7 +127,7 @@ impl State<S12> for KaoriPerfTestSM {
 
 #[state(super_state= S12)]
 impl State<S121> for KaoriPerfTestSM {
-     fn init(&mut self) -> InitResult<Self> {
+    fn init(&mut self) -> InitResult<Self> {
         debug!("S121-INIT");
         init_transition!(S1211)
     }
@@ -194,4 +192,3 @@ impl State<S1212> for KaoriPerfTestSM {
         }
     }
 }
-
